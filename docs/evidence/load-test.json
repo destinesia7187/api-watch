@@ -1,0 +1,98 @@
+{
+  "recorded_at": "2026-10-19T14:16:59.578252+00:00",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "logical_cpus": 12,
+  "database": "PostgreSQL",
+  "api_transport": "real loopback HTTP through Uvicorn",
+  "python": "3.12.14",
+  "postgresql_version": "16.15",
+  "application_version": "1.0.0",
+  "process_layout": "one Python process with concurrent API/worker/background tasks",
+  "fixture_destinations": 1,
+  "historical_outcomes": "success, failure, interrupted, skipped; configurations 1 and 2",
+  "monitors": 100,
+  "users": 5,
+  "interval_seconds": 60,
+  "global_concurrency": 10,
+  "per_ip_concurrency": 2,
+  "seed_history_rows": 4320000,
+  "warmup_seconds": 120,
+  "measured_seconds": 1800,
+  "target_delay_seconds": [
+    0.05,
+    0.77
+  ],
+  "api_statuses": {
+    "200": 8942
+  },
+  "api_latency": {
+    "stats_30d": {
+      "samples": 745,
+      "p95_ms": 1344.0,
+      "median_ms": 828.0,
+      "avg_ms": 763.928,
+      "max_ms": 2422.0
+    },
+    "history": {
+      "samples": 2233,
+      "p95_ms": 94.0,
+      "median_ms": 31.0,
+      "avg_ms": 46.691,
+      "max_ms": 1453.0
+    },
+    "list": {
+      "samples": 4472,
+      "p95_ms": 281.0,
+      "median_ms": 141.0,
+      "avg_ms": 150.605,
+      "max_ms": 1594.0
+    },
+    "series_24h": {
+      "samples": 747,
+      "p95_ms": 219.0,
+      "median_ms": 109.0,
+      "avg_ms": 122.198,
+      "max_ms": 1547.0
+    },
+    "stats_24h": {
+      "samples": 745,
+      "p95_ms": 156.0,
+      "median_ms": 78.0,
+      "avg_ms": 82.49,
+      "max_ms": 234.0
+    }
+  },
+  "schedule_delay": {
+    "samples": 3001,
+    "p95_ms": 1411.721,
+    "median_ms": 751.249,
+    "avg_ms": 772.753,
+    "max_ms": 3170.143
+  },
+  "live_check_outcomes": {
+    "success": 2777,
+    "failure": 224
+  },
+  "incident_statuses": {
+    "resolved": 100
+  },
+  "notification_events": {
+    "incident_resolved": 100,
+    "incident_opened": 100
+  },
+  "observed_max_running": 10,
+  "observed_max_per_ip": 2,
+  "duplicate_active_checks": 0,
+  "acceptance": {
+    "duration_30_minutes": true,
+    "representative_30_day_history": true,
+    "api_errors_zero": true,
+    "no_duplicate_active_checks": true,
+    "concurrency_limits_observed": true,
+    "expected_incident_transitions": true,
+    "schedule_p95_under_5s": true,
+    "list_history_p95_under_500ms": true,
+    "stats_24h_p95_under_1s": true,
+    "stats_30d_p95_under_2s": true
+  }
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#041734" />
+    <meta
+      name="description"
+      content="Monitor your websites and REST APIs. Track response times, investigate incidents, and get notified when something changes."
+    />
+    <title>API Watch — Website & API monitoring</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23ffffff'/%3E%3Cpath d='M9 34h12l7-16 9 29 7-13h11' fill='none' stroke='%230075ff' stroke-width='5' stroke-linejoin='round'/%3E%3C/svg%3E"
+    />
+    <link
+      rel="preload"
+      href="/static/fonts/InterVariable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/static/fonts.css" />
+    <link rel="stylesheet" href="/static/design-tokens.css" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div id="app">
+      <main id="main" class="boot-screen">
+        <div class="brand"><span class="brand-mark">↯</span> API Watch</div>
+        <p>Connecting to your workspace…</p>
+        <span class="spinner" aria-label="Loading"></span>
+      </main>
+    </div>
+    <div
+      id="toast-region"
+      class="toast-region"
+      aria-live="polite"
+      aria-atomic="false"
+    ></div>
+    <dialog id="modal" aria-labelledby="modal-title"></dialog>
+    <noscript
+      ><p class="noscript">
+        Please enable JavaScript to use API Watch. The REST API documentation is
+        available at <a href="/docs">/docs</a>.
+      </p></noscript
+    >
+  </body>
+</html>

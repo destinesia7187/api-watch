@@ -1,0 +1,58 @@
+{
+  "recorded_at": "2026-10-19T14:15:14.521547+00:00",
+  "application_version": "1.0.0",
+  "python": "3.12.14",
+  "backend": {
+    "tests": 280,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 3,
+    "passed": 277,
+    "seconds": 22.788
+  },
+  "skip_scope": "Three SQLite parametrizations of PostgreSQL-only concurrency tests; corresponding PostgreSQL parametrizations passed.",
+  "frontend": {
+    "passed": 15,
+    "command": "node scripts/test_frontend.cjs"
+  },
+  "checks": {
+    "ruff": "passed",
+    "compileall": "passed",
+    "postgresql_migrations_and_model_drift": "passed",
+    "sqlite_migration_and_browser_flow": "passed",
+    "openapi_snapshot_deterministic": "passed",
+    "dependency_integrity": "passed"
+  },
+  "package": {
+    "wheel": "api_watch-1.0.0-py3-none-any.whl",
+    "sha256": "c35365f344c9a91cc4857b9580ef92510776cfaccd890da0296cffee302cd9f5",
+    "frontend_assets_verified": true
+  },
+  "compose": {
+    "version": "5.6.0",
+    "configuration": "passed",
+    "local_image_build": "not run; Docker Engine unavailable",
+    "ci_image_build_job": "configured; remote run not claimed"
+  },
+  "browser": {
+    "viewport_width_pixels": 700,
+    "flows": [
+      "register",
+      "login",
+      "create monitor",
+      "scheduled history",
+      "manual diagnostic",
+      "pause/edit/resume",
+      "incidents",
+      "settings",
+      "chart period",
+      "Escape closes dialog and restores focus",
+      "Tab focus visible"
+    ],
+    "console_errors_observed": 0,
+    "screenshots": [
+      "../images/dashboard.png",
+      "../images/charts.png"
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+x-app: &app
+  build: .
+  environment: &environment
+    APP_ENV: ${APP_ENV:-development}
+    PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-http://127.0.0.1:8000}
+    DATABASE_URL: postgresql+psycopg://apiwatch:${POSTGRES_PASSWORD:?Generate .env first}@db:5432/apiwatch
+    SESSION_SECRET: ${SESSION_SECRET:?Generate .env first}
+    ENCRYPTION_KEY: ${ENCRYPTION_KEY:?Generate .env first}
+    ENCRYPTION_KEY_ID: ${ENCRYPTION_KEY_ID:-local-v1}
+    REGISTRATION_ENABLED: ${REGISTRATION_ENABLED:-true}
+    CHECK_CONCURRENCY: ${CHECK_CONCURRENCY:-10}
+    FORWARDED_ALLOW_IPS: ${FORWARDED_ALLOW_IPS:-127.0.0.1}
+    TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+    TELEGRAM_BOT_USERNAME: ${TELEGRAM_BOT_USERNAME:-}
+    SMTP_HOST: ${SMTP_HOST:-}
+    SMTP_PORT: ${SMTP_PORT:-587}
+    SMTP_USERNAME: ${SMTP_USERNAME:-}
+    SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+    SMTP_FROM: ${SMTP_FROM:-API Watch <noreply@example.com>}
+    SMTP_STARTTLS: ${SMTP_STARTTLS:-true}
+  restart: unless-stopped
+  networks: [app, data]
+  volumes: [local-mail:/app/var/mail]
+  security_opt: [no-new-privileges:true]
+  cap_drop: [ALL]
+
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: apiwatch
+      POSTGRES_USER: apiwatch
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Generate .env first}
+    volumes: [postgres-data:/var/lib/postgresql/data]
+    networks: [data]
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U apiwatch -d apiwatch"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  migrate:
+    <<: *app
+    command: [python, -m, api_watch, migrate]
+    restart: "no"
+    depends_on:
+      db: {condition: service_healthy}
+  web:
+    <<: *app
+    ports: ["127.0.0.1:8000:8000"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready')"]
+      interval: 15s
+      timeout: 3s
+      retries: 5
+  worker:
+    <<: *app
+    command: [python, -m, api_watch, worker]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+  background:
+    <<: *app
+    command: [python, -m, api_watch, background]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+
+volumes:
+  postgres-data:
+  local-mail:
+networks:
+  app:
+  data:
+    internal: true

@@ -1,0 +1,48 @@
+{
+  "recorded_at": "2026-10-19T14:07:53.364714+00:00",
+  "status": "passed",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.14",
+  "schema": "recovery_e8a75011a7da4a5ba3699b89f3996c49",
+  "scope": "Real killed CLI worker and controlled local POST; unique disposable PostgreSQL schema",
+  "clock": "Actual PostgreSQL clock_timestamp; no simulated timestamps",
+  "interval_seconds": 60,
+  "target_timeout_ms": 1000,
+  "worker_lease_seconds": 16,
+  "verification": {
+    "target_received_exact_post_before_worker_kill": true,
+    "hard_kill_left_ambiguous_running_check": true,
+    "real_expired_lease_becomes_worker_lost": true,
+    "late_completion_with_old_lease_is_rejected": true,
+    "replacement_does_not_requeue_or_replay_original_post": true,
+    "next_real_anchored_slot_completes_successfully": true,
+    "original_check_stays_interrupted_after_recovery": true,
+    "interruption_does_not_create_false_incident_or_notification": true
+  },
+  "cleanup": {
+    "owned_workers_stopped": true,
+    "schema_removed": true
+  },
+  "postgresql_version": "PostgreSQL 16.15, compiled by Visual C++ build 1944, 64-bit",
+  "anchor_at": "2026-10-19T14:07:56.646062+00:00",
+  "killed_worker_exit_code": 1,
+  "actual_lease_duration_seconds": 16.0,
+  "first_post_received_at": "2026-10-19T14:07:58.022660+00:00",
+  "lease_expires_at": "2026-10-19T19:08:13.969167+05:00",
+  "actual_lease_wait_seconds": 15.953,
+  "original_terminal_state": {
+    "status": "finished",
+    "outcome": "interrupted",
+    "error_code": "worker_lost"
+  },
+  "next_slot_result": {
+    "scheduled_at": "2026-10-19T19:08:56.646062+05:00",
+    "outcome": "success",
+    "http_status": 200,
+    "response_time_ms": 0.0
+  },
+  "post_requests_received": 2,
+  "check_rows": 2,
+  "public_or_telegram_requests": 0,
+  "total_seconds": 63.782
+}
