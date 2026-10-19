@@ -96,7 +96,9 @@ def main():
     if args.command == "export-openapi":
         from api_watch.app import create_app
         Path("docs").mkdir(exist_ok=True)
-        Path("docs/openapi.json").write_text(json.dumps(create_app(settings).openapi(), indent=2), encoding="utf-8")
+        Path("docs/openapi.json").write_text(
+            json.dumps(create_app(settings).openapi(), indent=2) + "\n", encoding="utf-8", newline="\n"
+        )
         print("Exported docs/openapi.json")
         return
     engine, factory = make_database(settings)
